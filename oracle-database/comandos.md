@@ -114,3 +114,9 @@ SELECT * FROM TABELA_DE_PRODUTOS WHERE SABOR LIKE '%Morango';Copiar código
 38) O AND pode ser usado junto com o LIKE, como no comando:
 
 SELECT * FROM TABELA_DE_PRODUTOS WHERE SABOR LIKE 'Morango%' AND EMBALAGEM = 'PET';
+
+Na atividade onde pretendíamos obter os produtos que venderam mais que 394000 litros, executamos esta consulta:
+
+SELECT CODIGO_DO_PRODUTO, SUM(QUANTIDADE) FROM ITENS_NOTAS_FISCAIS 
+GROUP BY CODIGO_DO_PRODUTO HAVING SUM(QUANTIDADE) > 394000 
+ORDER BY SUM(QUANTIDADE) DESC;
