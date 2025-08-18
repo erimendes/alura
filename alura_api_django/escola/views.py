@@ -12,6 +12,8 @@ class AlunosViewSet(viewsets.ModelViewSet):
     serializer_class = AlunoSerializer
     # authentication_classes = [SessionAuthentication, TokenAuthentication]
     # permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticatedOrReadOnly]
+    # permission_classes = [IsAdminUser]
 
 class CursosViewSet(viewsets.ModelViewSet):
     """Exibindo todos os cursos"""
