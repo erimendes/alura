@@ -18,6 +18,8 @@ from django.contrib import admin
 from django.urls import path, include
 from escola.views import AlunosViewSet, CursosViewSet, MatriculasViewSet, ListaMatriculasAluno, ListaAlunosMatriculados
 from rest_framework import routers
+# Importe o view de autenticação por token
+from rest_framework.authtoken.views import obtain_auth_token
 
 router = routers.DefaultRouter()
 router.register('alunos', AlunosViewSet, basename='Alunos')
@@ -29,4 +31,6 @@ urlpatterns = [
     path('', include(router.urls)),
     path('aluno/<int:pk>/matriculas/', ListaMatriculasAluno.as_view()),
     path('curso/<int:pk>/matriculas/', ListaAlunosMatriculados.as_view()),
+    # Adicione esta linha para a URL do token
+    path('api-token-auth/', obtain_auth_token),
 ]
