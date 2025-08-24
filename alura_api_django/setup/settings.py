@@ -39,10 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'escola',
+    'usuarios',
     'rest_framework.authtoken', # Adicione esta linha
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -137,3 +140,40 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #         'rest_framework.permissions.IsAuthenticated',
 #     )
 # }
+
+# Adicione estas linhas no final do arquivo
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000", # Adicione a URL do seu frontend em desenvolvimento
+    "http://localhost:5173", # Se você estiver usando o Vite ou uma ferramenta similar
+    "http://127.0.0.1:3000",
+    "http://127.0.0.1:5173",
+]
+
+# Adicione esta linha com os cabeçalhos que sua API aceita.
+# O 'content' e 'content-type' são comuns em requisições POST.
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
+
+# Por favor, remova ou comente a linha abaixo quando o problema for resolvido.
+# CORS_ALLOWED_ALL_ORIGINS = True
+
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]
+
+CORS_ALLOW_CREDENTIALS = True
